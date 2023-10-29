@@ -15,6 +15,23 @@
             width: 200px;
             height: 200px;
         }
+       
+        /* Apply an indentation to the list items */
+        ul, ol {
+            padding-left: 20px; /* Adjust the value to control the level of indentation */
+        }
+
+        .heading-with-image {
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Center vertically */
+        }
+
+        .heading-with-image img {
+            width: 40px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 10px; /* Add spacing between the image and text */
+        }
+
     </style>
 </head>
 <body>
@@ -30,11 +47,13 @@
         </p>
     
     <h2>Coursework</h2>
-        <li>First Year Engineering: <b> <a href="http://teaching.eng.cam.ac.uk/content/part-ia-guide" target="_blank"> IA</a> </b>
-        <li>Second Year Engineering <b> <a href="http://teaching.eng.cam.ac.uk/content/part-ib-guide" target="_blank">IB</a> </b>
-        <li>Third Year Engineering <b> <a href="http://teaching.eng.cam.ac.uk/content/part-iia-guide" target="_blank">IIA</a> </b>
-        <li>Fourth Year Engineering <b> <a href="http://teaching.eng.cam.ac.uk/content/part-iib-guide" target="_blank">IIB</a> </b>
-        </li>
+        <ul>
+            <li style="margin-left: 30px;">First Year Engineering: <b> <a href="http://teaching.eng.cam.ac.uk/content/part-ia-guide" target="_blank"> IA</a> </b> </li>
+            <li>Second Year Engineering: <b> <a href="http://teaching.eng.cam.ac.uk/content/part-ib-guide" target="_blank">IB</a> </b> </li>
+            <li>Third Year Engineering: <b> <a href="http://teaching.eng.cam.ac.uk/content/part-iia-guide" target="_blank">IIA</a> </b> </li>
+            <li>Fourth Year Engineering: <b> <a href="http://teaching.eng.cam.ac.uk/content/part-iib-guide" target="_blank">IIB</a> </b> </li>
+        </ul>
+        
 
     <h2>Societies</h2>  
         <p>
