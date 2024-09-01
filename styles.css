@@ -1,0 +1,56 @@
+body {
+    text-align: left;
+    font-family: Arial, sans-serif;
+}
+
+#profile-picture {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heading-with-image {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center vertically */
+}
+
+.heading-with-image img {
+    width: 90px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Add spacing between the image and text */
+}
+
+h3 {
+    margin-left: 30px; /* Indent the h3 heading by 30px */
+}
+
+ul {
+    margin-left: 10px; /* Indent the unordered list by 30px */
+}
+
+.work-experience {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.work-experience li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.work-experience li img {
+    width: 50px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.work-experience li div {
+    max-width: 80%;
+}
