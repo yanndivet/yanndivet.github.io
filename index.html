@@ -508,6 +508,33 @@
 
                             <div class="year-section">
                                 <div class="year-title" onclick="toggleYear(this)">
+                                    <span>Year 3 - Part IIA (2023-2024)</span>
+                                    <span class="year-toggle-icon">▼</span>
+                                </div>
+                                <div class="modules-grid">
+                                    <div class="module-item">
+                                        Signals & Systems
+                                    </div>
+                                    <div class="module-item">
+                                        Systems & Control
+                                    </div>
+                                    <div class="module-item">
+                                        Statistical Signal Processing
+                                    </div>
+                                    <div class="module-item">
+                                        Information Theory & Coding
+                                    </div>
+                                    <div class="module-item">
+                                        Inference
+                                    </div>
+                                    <div class="module-item">
+                                        Mathematical Methods
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="year-section">
+                                <div class="year-title" onclick="toggleYear(this)">
                                     <span>Year 2 - Part IB (2022-2023)</span>
                                     <span class="year-toggle-icon">▼</span>
                                 </div>
@@ -838,8 +865,8 @@
             // Initialize year sections as expanded
             const yearGrids = document.querySelectorAll('.modules-grid');
             const yearIcons = document.querySelectorAll('.year-toggle-icon');
-            yearGrids.forEach(grid => grid.classList.add('active'));
-            yearIcons.forEach(icon => icon.style.transform = 'rotate(180deg)');
+            yearGrids.forEach(grid => grid.classList.remove('active'));
+            yearIcons.forEach(icon => icon.style.transform = 'rotate(0deg)');
         });
 
     </script>
