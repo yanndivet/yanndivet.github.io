@@ -455,12 +455,22 @@
             header.classList.toggle('active');
             content.classList.toggle('active');
             
+            // Add icon rotation logic
+            if (content.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+            
             // Close other sections for accordion effect (optional)
             const allSections = document.querySelectorAll('.section-header');
             allSections.forEach(section => {
                 if (section !== header && section.classList.contains('active')) {
                     section.classList.remove('active');
                     section.nextElementSibling.classList.remove('active');
+                    // Also reset other icons
+                    const otherIcon = section.querySelector('.toggle-icon');
+                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
                 }
             });
         }
