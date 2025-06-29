@@ -291,6 +291,71 @@
             border: 3px solid white;
         }
 
+         .education-item > p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .year-section {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+
+        .year-title {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .year-title:hover {
+            color: #667eea;
+        }
+
+        .year-toggle-icon {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+        }
+
+        .modules-grid.active {
+            max-height: 1000px;
+        }
+
+        .module-item {
+            background: #f1f3f4;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #495057;
+            border-left: 3px solid #28a745;
+        }
+
+        .course-type {
+            font-size: 0.8rem;
+            color: #6c757d;
+            font-style: italic;
+        }
+
         /* Nested Toggle for Sub-sections */
         .subsection-toggle {
             background: rgba(102, 126, 234, 0.1);
@@ -459,6 +524,20 @@
                         </ul>
                     </div>
                 </div>
+
+                <div class="experience-item">
+                    <img src="images/rjobrien_logo.jpeg" alt="RJObrien" class="company-logo">
+                    <div class="experience-details">
+                        <h3>Technology Intern</h3>
+                        <div class="experience-period">RJ O'Brien (Borker), London | August 2022</div>
+                        <ul>
+                            <li>Demonstrated the Qomply Interface with the client and then used client feedback to improve the interface further</li>
+                            <li>Fixed bugs in spread-bets reporting</li>
+                            <li>Interacted with Middle and Back Office to solve any ongoing problems</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -568,7 +647,6 @@
             </div>
             <div class="section-content">
                 <p><strong>Email:</strong> yad22@cam.ac.uk</p>
-                <p><strong>Address:</strong> Homerton College, Hills Road, Cambridge CB2 8PH, UK</p>
                 <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yann-divet-6b84a3184/" target="_blank">Connect with me</a></p>
             </div>
         </div>
@@ -606,13 +684,37 @@
             }
         }
 
-        // Initialize with first section open
+         function toggleYear(yearTitle) {
+            const modulesGrid = yearTitle.nextElementSibling;
+            const icon = yearTitle.querySelector('.year-toggle-icon');
+            
+            if (modulesGrid.classList.contains('active')) {
+                modulesGrid.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                modulesGrid.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Initialize the section as expanded
         document.addEventListener('DOMContentLoaded', function() {
+            const content = document.querySelector('.section-content');
+            const icon = document.querySelector('.toggle-icon');
+            content.classList.add('active');
+            icon.style.transform = 'rotate(180deg)';
             const firstSection = document.querySelector('.section-header');
             if (firstSection) {
                 firstSection.click();
             }
+
+            // Initialize year sections as expanded
+            const yearGrids = document.querySelectorAll('.modules-grid');
+            const yearIcons = document.querySelectorAll('.year-toggle-icon');
+            yearGrids.forEach(grid => grid.classList.add('active'));
+            yearIcons.forEach(icon => icon.style.transform = 'rotate(180deg)');
         });
+
     </script>
 </body>
 </html>
