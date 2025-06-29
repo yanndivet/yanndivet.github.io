@@ -3,186 +3,616 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yann Divet</title>
+    <title>Yann Divet - Portfolio</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            text-align: left;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
 
-        #profile-picture {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            width: 200px;
-            height: 200px;
+            object-fit: cover;
+            border: 4px solid #667eea;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
         }
 
-        img.center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto
-            
-        }
-       
-        .heading-with-image {
-            display: flex; /* Use flexbox for alignment */
-            align-items: center; /* Center vertically */
+        .profile-image:hover {
+            transform: scale(1.05);
         }
 
-        .heading-with-image img {
-            width: 90px; /* Adjust the width as needed */
-            height: auto; /* Maintain aspect ratio */
-            margin-right: 20px; /* Add spacing between the image and text */
+        .header-content h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        h3 {
-            margin-left: 30px; /* Indent the h3 heading by 30px */
+        .header-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
         }
 
-        ul {
-            margin-left: 10px; /* Indent the unordered list by 30px */
+        .social-links {
+            display: flex;
+            gap: 15px;
         }
 
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            padding: 25px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .section-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        .section-content.active {
+            max-height: 2000px;
+            padding: 30px;
+        }
+
+        /* Work Experience Styling */
+        .experience-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .experience-details h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .experience-period {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .experience-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-details li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .experience-details li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project-item {
+            background: rgba(102, 126, 234, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .project-item h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .project-links a {
+            padding: 5px 12px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            background: #5a67d8;
+            transform: scale(1.05);
+        }
+
+        /* Education Timeline */
+        .education-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .education-timeline:before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .education-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            margin-left: 20px;
+        }
+
+        .education-item:before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 20px;
+            width: 10px;
+            height: 10px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        /* Nested Toggle for Sub-sections */
+        .subsection-toggle {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .subsection-toggle:hover {
+            background: rgba(102, 126, 234, 0.15);
+        }
+
+        .subsection-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .subsection-content.active {
+            max-height: 1000px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .experience-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .section-card:nth-child(2) { animation-delay: 0.1s; }
+        .section-card:nth-child(3) { animation-delay: 0.2s; }
+        .section-card:nth-child(4) { animation-delay: 0.3s; }
+        .section-card:nth-child(5) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-    <table>
-        <tbody><tr>
-            <td width="5%" valign="top"> 
-                <img src="./images/YD.JPG" height="200" class="center">
-           </td>
-            <td width="50%" valign="top"> 
-            <ul>
-                <h1>Yann DIVET</h1>
-                <br>I am an incoming fourth year student in Information and Computer Engineering, Department of Engineering, University of Cambridge.
-                <br><br><a href="https://www.linkedin.com/in/yann-divet-6b84a3184/"><img src="images/LI-Logo.png" alt="Click to visit my LinkedIn page" height="20"></a> &nbsp;
-                <a href="https://github.com/yanndivet"><img src="images/GitHub.png" alt="Click to visit my GitHub page" height="20"></a> &nbsp;
-                <a href="cv/DIVET, Yann Aug2024.pdf"><img src="images/pdf.png" alt="Click to view my resume in pdf" height="20"></a>
-            </ul> </td>
-    
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <img src="./images/YD.JPG" alt="Yann Divet" class="profile-image">
+            <div class="header-content">
+                <h1>Yann Divet</h1>
+                <p>Fourth Year Information & Computer Engineering Student<br>University of Cambridge</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/yann-divet-6b84a3184/" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/yanndivet" target="_blank">GitHub</a>
+                    <a href="cv/DIVET, Yann Aug2024.pdf" target="_blank">Resume</a>
+                </div>
+            </div>
+        </div>
 
-    <div class="heading-with-image">
-        <h2>Courses and Modules</h2> &nbsp;&nbsp;
-        <a href="https://www.cam.ac.uk/"><img src="images/Cam.jpg"></a>
+        <!-- Education Section -->
+        <div class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🎓 Education</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="education-timeline">
+                    <div class="education-item">
+                        <h3>University of Cambridge - Engineering Department</h3>
+                        <p><strong>Information & Computer Engineering</strong> | 2021 - 2025</p>
+                        <p>Currently in Fourth Year (Part IIB) - Expected First Class Honours</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>Academic Performance</h3>
+                        <p>Consistent high performance across all engineering fundamentals</p>
+                        <p>Specialized in quantitative finance and machine learning applications</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Work Experience Section -->
+        <div class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>💼 Work Experience</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="experience-item">
+                    <img src="images/robeco_logo.jpeg" alt="Robeco" class="company-logo">
+                    <div class="experience-details">
+                        <h3>Quantitative Fixed Income Researcher Intern</h3>
+                        <div class="experience-period">Robeco, Rotterdam | July - August 2024</div>
+                        <ul>
+                            <li>Extracted market sentiment from earnings calls using advanced NLP techniques</li>
+                            <li>Implemented topic modeling algorithms including Latent Dirichlet Allocation</li>
+                            <li>Built comprehensive backtester for multi-asset strategy evaluation</li>
+                            <li>Optimized performance through Cython, multi-processing, and Polars integration</li>
+                            <li><strong>🏆 1st place in Investment Game</strong> - 6.36% return in 8 weeks (49.3% annualized)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <img src="images/isda_logo.jpeg" alt="ISDA" class="company-logo">
+                    <div class="experience-details">
+                        <h3>Quantitative Analyst Intern</h3>
+                        <div class="experience-period">ISDA, London | July - September 2023</div>
+                        <ul>
+                            <li>Implemented 4 methodologies for market data time-series cleaning and aggregation</li>
+                            <li>Developed robust regression techniques through extensive research</li>
+                            <li>Achieved 6x optimization in risk calculation calibration</li>
+                            <li>Presented findings to senior stakeholders</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <img src="images/qomply_logo.jpeg" alt="Qomply" class="company-logo">
+                    <div class="experience-details">
+                        <h3>Technology Intern</h3>
+                        <div class="experience-period">Qomply (Fintech), London | July - September 2022</div>
+                        <ul>
+                            <li>Processed large-scale OTC derivative datasets across multiple asset classes</li>
+                            <li>Developed comprehensive FX services covering 60+ currency pairs</li>
+                            <li>Implemented robust testing frameworks including Pytest unit tests</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🚀 Projects</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <!-- Finance Projects Subsection -->
+                <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                    <h3>💰 Finance & Trading</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="subsection-content">
+                    <div class="projects-grid">
+                        <div class="project-item">
+                            <h4>CUATS Challenge Winner 2023</h4>
+                            <p>Developed multi-asset algorithmic trading system with 4 integrated strategies</p>
+                            <div class="project-links">
+                                <a href="projects/CUATS Challenge Presentation.pdf" target="_blank">📄 Report</a>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <h4>Black-Scholes Visualization</h4>
+                            <p>Interactive option pricing model with real-time parameter adjustment</p>
+                            <div class="project-links">
+                                <a href="projects/BS-graphs.html" target="_blank">🌐 Demo</a>
+                                <a href="https://github.com/yanndivet/Black-Scholes" target="_blank">💻 Code</a>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <h4>Bond Pricing Engine</h4>
+                            <p>Comprehensive bond valuation tool with yield curve analysis</p>
+                            <div class="project-links">
+                                <a href="projects/bond-pricing-graphs.html" target="_blank">🌐 Demo</a>
+                                <a href="https://github.com/yanndivet/bond-pricing" target="_blank">💻 Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Science Projects Subsection -->
+                <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                    <h3>🤖 Data Science & ML</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="subsection-content">
+                    <div class="projects-grid">
+                        <div class="project-item">
+                            <h4>Portfolio Risk Reduction</h4>
+                            <p>Mathematical demonstration of diversification benefits in portfolio management</p>
+                            <div class="project-links">
+                                <a href="projects/portfolioRiskReduction.html" target="_blank">🌐 Demo</a>
+                                <a href="https://github.com/yanndivet/portfolioRiskReductionViaDiversification" target="_blank">💻 Code</a>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <h4>Machine Learning Specialization</h4>
+                            <p>Completed Andrew Ng's comprehensive ML course series</p>
+                            <div class="project-links">
+                                <a href="https://www.coursera.org/account/accomplishments/certificate/G7VL2NBZBA9N" target="_blank">🏆 Certificate</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activities & Leadership Section -->
+        <div class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🏆 Leadership & Activities</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="experience-item">
+                    <div class="experience-details">
+                        <h3>Cambridge University Algorithmic Trading Society (CUATS)</h3>
+                        <div class="experience-period">Secretary | 2023-2024</div>
+                        <ul>
+                            <li>Organized industry speaker events and trading competitions</li>
+                            <li>Coordinated educational workshops on quantitative finance</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-details">
+                        <h3>Cambridge University Swimming & Water Polo Club</h3>
+                        <div class="experience-period">Vice-Captain | 2023-2024</div>
+                        <ul>
+                            <li><strong>Two-time Full Blue recipient</strong></li>
+                            <li>Holder of 2 university swimming records</li>
+                            <li>Led team training sessions and competitive strategy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📧 Contact</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <p><strong>Email:</strong> yad22@cam.ac.uk</p>
+                <p><strong>Address:</strong> Homerton College, Hills Road, Cambridge CB2 8PH, UK</p>
+                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yann-divet-6b84a3184/" target="_blank">Connect with me</a></p>
+            </div>
+        </div>
     </div>
-        <ul>
-            <li>First Year Engineering: <b> <a href="http://teaching.eng.cam.ac.uk/content/part-ia-guide" target="_blank"> IA</a> </b> </li>
-            <li>Second Year Engineering: <b> <a href="http://teaching.eng.cam.ac.uk/content/part-ib-guide" target="_blank">IB</a> </b> </li>
-            <li>Third Year Engineering: <b> <a href="http://teaching.eng.cam.ac.uk/content/part-iia-guide" target="_blank">IIA</a> </b> </li>
-            <li>Fourth Year Engineering (not started): <b> <a href="http://teaching.eng.cam.ac.uk/content/part-iib-guide" target="_blank">IIB</a> </b> </li>
-        </ul>
+
+    <script>
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
             
-    <h2>Work Experience</h2>
-    <ul class="work-experience" style="list-style: none; padding: 0;">
-        <li style="display: flex; align-items: flex-start; margin-bottom: 20px;">
-            <img src="images/robeco_logo.jpeg" alt="Robeco Logo" style="width: 50px; height: auto; margin-right: 15px;">
-            <div>
-                <strong>Robeco – Quantitative Fixed Income Researcher Intern (Rotterdam)</strong><br>
-                Jul. 2024 – Aug. 2024<br>
-                <ul>
-                    <li>Extracted market sentiment from earnings calls using NLP techniques (bag-of-words, embeddings, LLMs).</li>
-                    <li>Implemented topic modelling algorithms, such as Latent Dirichlet Allocation.</li>
-                    <li>Built backtester to evaluate strategy performance with both stocks and corporate bonds.</li>
-                    <li>Optimised program through Cython, multi-processing, and integrating Polars.</li>
-                    <li>1st place in Investment Game among 15 interns, with a return of 6.36% in 8 weeks (49.3% annualised).</li>
-                </ul>
-            </div>
-        </li>
-        <li style="display: flex; align-items: flex-start; margin-bottom: 20px;">
-            <img src="images/isda_logo.jpeg" alt="ISDA Logo" style="width: 50px; height: auto; margin-right: 15px;">
-            <div>
-                <strong>ISDA – Quantitative Analyst Intern (London)</strong><br>
-                Jul. 2023 – Sept. 2023<br>
-                <ul>
-                    <li>Implemented 4 methodologies for cleaning and aggregating market data time-series for the SIMM calibration.</li>
-                    <li>Developed robust regression techniques through extensive research.</li>
-                    <li>Optimised calibration of risk calculation by 6-fold through queuing, vectorisation, and JIT compiling.</li>
-                    <li>Presented results to senior stakeholders.</li>
-                </ul>
-            </div>
-        </li>
-        <li style="display: flex; align-items: flex-start; margin-bottom: 20px;">
-            <img src="images/qomply_logo.jpeg" alt="Qomply Logo" style="width: 50px; height: auto; margin-right: 15px;">
-            <div>
-                <strong>Qomply (Fintech) – Technology Intern (London)</strong><br>
-                Jul. 2022 – Sept. 2022<br>
-                <ul>
-                    <li>Manipulated and cleaned large datasets of OTC derivative products across asset classes.</li>
-                    <li>Developed FX services for currency pairs, covering over 60 different currencies.</li>
-                    <li>Regression testing, including developing Pytest unit tests.</li>
-                </ul>
-            </div>
-        </li>
-        <li style="display: flex; align-items: flex-start; margin-bottom: 20px;">
-            <img src="images/rjobrien_logo.jpeg" alt="EDF Logo" style="width: 50px; height: auto; margin-right: 15px;">
-            <div>
-                <strong>RJ O’Brien (Global Brokerage firm) – Transaction Reporting Associate (London)</strong><br>
-                Jul. 2022 – Sept. 2022<br>
-                <ul>
-                    <li>Within the Qomply internship, worked with OTC trading datasets including 30 million records.</li>
-                </ul>
-            </div>
-        </li>
-        <li style="display: flex; align-items: flex-start; margin-bottom: 20px;">
-            <img src="images/edf_energy_logo.jpeg" alt="RJ O’Brien Logo" style="width: 50px; height: auto; margin-right: 15px;">
-            <div>
-                <strong>EDF Energy – Transaction Reporting Associate (London)</strong><br>
-                Jun. 2018 – Jun. 2018<br>
-                <ul>
-                    <li>shadowed engineers working on the new Sizewell C Evolutionary Pressurised Reactor nuclear power plant.</li>
-                    <li>Learnt about the role of a coolant and a moderator in a reactor, as well as electricity production and the complexity involved in connecting a power plant to the electrical grid.</li>
-                </ul>
-            </div>
-        </li>
-    </ul>
-        
+            header.classList.toggle('active');
+            content.classList.toggle('active');
+            
+            // Close other sections for accordion effect (optional)
+            const allSections = document.querySelectorAll('.section-header');
+            allSections.forEach(section => {
+                if (section !== header && section.classList.contains('active')) {
+                    section.classList.remove('active');
+                    section.nextElementSibling.classList.remove('active');
+                }
+            });
+        }
 
-    <div class="heading-with-image">
-        <h2>Societies</h2> &nbsp;
-        <a href="https://www.cues.org.uk/"><img src="images/CUES.png" alt="Image CUES"></a> &nbsp;
-        <a href="https://cuats.co.uk/"><img src="images/cuats.png" alt="Image CUATS"></a> &nbsp;
-        <a href="https://cuswpc.co.uk/"><img src="images/cuswpc.jpg" alt="Image CUSWPC"></a> &nbsp;
-        <a href="https://www.betasigmaclub.com/"><img src="images/beta_sigma.jpg" alt="Image BetaSigma" style="width: 45px; height: 35px;"></a>
-      
-    </div>
-    <ul>
-        <li>In the academic year 2023-2024, I am serving as secretary for <a href="https://cuats.co.uk/" target="_blank">CUATS</a>, the Cambridge University Algorithmic Trading Society </li>
-        <li>In the academic year 2023-2024, I am serving as vice-captain of <a href="https://cuswpc.co.uk/" target="_blank">CUSWPC</a>, the Cambridge University Swimming & Water Polo Club.</li>
-        <li>I am a two time <a href="https://hawksclub.co.uk/about/history/the-cambridge-blue/" target="_blank">Full Blue</a>. I currently hold 2 <a href="https://cuswpc.co.uk/swimming/swimming-records/mens-long-course-records/" target="_blank">university records</a> in swimming.</li>
-    </ul>
-           
-    <h2>Projects</h2>
-        <h3>Finance</h3>
-            <ul>
-                <li>Akuna Capital Options 101: <a href="https://akunacapital.teachable.com/p/options101"><img src="images/akuna_capital_logo.jpg" alt="logo BMC" width="20" height="15"></a> <a href="images/certificate-of-completion-for-akuna-capital-options-101.pdf" target="_blank"><img src="images/logo certificate.png" alt="logo certificate" width="15" height="15"></a></li>
-                <li><a href="https://cuats.co.uk/challenge/" target="_blank">CUATS Challenge</a> (1st place in 2023): Developed multi-asset algorithm trading 4 strategies; presented to peers and competitors. <a href="projects/CUATS Challenge Presentation.pdf" target="_blank"><img src="images/pdf.png" alt="Click to view CUATS Challenge in pdf" width="15" height="15"></a></li>
-                <li>CUATS Coding Sessions Presentation on Credit <a href="projects/CUATS Credit Presentation-final.pdf" target="_blank"><img src="images/pdf.png" alt="Click to view credit presentation in pdf" width="15" height="15"></a></li>
-                <li>1st place in Investment Game among 15 Robeco Summer 2024 interns, with a return of 6.36% in 8 weeks (49.3% annualised)</li>
-                <li>Bloomberg Market Concepts: <a href="https://www.bloomberg.com/professional/product/certificate-courses/"><img src="images/BMC_logo.jpg" alt="logo BMC" width="20" height="15"></a> <a href="https://portal.bloombergforeducation.com/certificates/J66Km2cdkdwYSERJbtqDW41s" target="_blank"><img src="images/logo certificate.png" alt="logo certificate" width="15" height="15"></a></li>
-                <li>Black Scholes model: <a href="projects/BS-graphs.html" target="_blank"><img src="images/html logo.jpg" alt="logo html" width="17" height="17"></a> &nbsp<a href="https://github.com/yanndivet/Black-Scholes" target="_blank"><img src="images/GitHub.png" alt="logo GitHub" width="15" height="15"></a></li>
-                <li>Bond Pricing: <a href="projects/bond-pricing-graphs.html" target="_blank"><img src="images/html logo.jpg" alt="logo html" width="17" height="17"></a> &nbsp<a href="https://github.com/yanndivet/bond-pricing" target="_blank"><img src="images/GitHub.png" alt="logo GitHub" width="15" height="15"></a></li>
-                <li>Benefit of Diversification: <a href="projects/portfolioRiskReduction.html" target="_blank"><img src="images/html logo.jpg" alt="logo html" width="17" height="17"></a>  &nbsp;<a href="https://github.com/yanndivet/portfolioRiskReductionViaDiversification" target="_blank"><img src="images/GitHub.png" alt="logo GitHub" width="15" height="15"></a></li>
-            </ul>
-        <h3>Data Science and Machine Learning</h3>
-            <ul>
-                <li>WorldQuant University Data Lab: <a href="https://www.wqu.edu/programs/applied-ds-lab/?gad_source=1&gclid=Cj0KCQjwhfipBhCqARIsAH9msbkFFztakcnf8lby61HKn_6tfGxKM1mDVlRxsfB5NHR6DiQDUouDE5UaAuV2EALw_wcB"><img src="images/worldquant-university.jpg" alt="logo WQU" width="17" height="17"></a> <a href="https://www.credly.com/badges/3bfd053c-6e1f-434b-9317-92a40f0a08fa/public_url" target="_blank"><img src="images/logo certificate.png" alt="logo certificate" width="15" height="15"></a></li>
-                <li>Unsupervised Learning, Recommenders, Reinforcement Learning (Andrew Ng): <a href="https://www.coursera.org/learn/unsupervised-learning-recommenders-reinforcement-learning"><img src="images/logo_coursera.png" alt="logo coursera" width="15" height="15"></a> <a href="https://www.coursera.org/account/accomplishments/certificate/D7G3T0USU9EX" target="_blank"><img src="images/logo certificate.png" alt="logo certificate" width="15" height="15"></a></li>
-                <li>Advanced Learning Algorithms (Andrew Ng): <a href="https://www.coursera.org/learn/advanced-learning-algorithms"><img src="images/logo_coursera.png" alt="logo coursera" width="15" height="15"></a> <a href="images/Coursera_AdvancedLearningAlgos-1.pdf" target="_blank"><img src="images/logo certificate.png" alt="logo certificate" width="15" height="15"></a></li>
-                <li>Machine Learning: Supervised Machine Learning: Regression and Classification (Andrew Ng): <a href="https://www.coursera.org/learn/machine-learning/home/"><img src="images/logo_coursera.png" alt="logo coursera" width="15" height="15"></a> <a href="https://www.coursera.org/account/accomplishments/certificate/G7VL2NBZBA9N" target="_blank"><img src="images/logo certificate.png" alt="logo certificate" width="15" height="15"></a></li>
-                <li>Pandas&nbsp;<a href="https://www.kaggle.com/learn/pandas"><img src="images/kaggle logo.png" alt="logo kaggle" width="17" height="17"></a>&nbsp;<a href="https://www.kaggle.com/learn/certification/yanndivet/pandas"><img src="images/logo certificate.png" alt="logo certif" width="15" height="15"></a></li>
-                <li>Intro to Machine Learning&nbsp;<a href="https://www.kaggle.com/learn/intro-to-machine-learning"><img src="images/kaggle logo.png" alt="logo kaggle" width="17" height="17"></a>&nbsp;<a href="https://www.kaggle.com/learn/certification/yanndivet/intro-to-machine-learning"><img src="images/logo certificate.png" alt="logo certif" width="15" height="15"></a></li>
-                <li>Intermediate Machine Learning&nbsp;<a href="https://www.kaggle.com/learn/intermediate-machine-learning"><img src="images/kaggle logo.png" alt="logo kaggle" width="17" height="17"></a>&nbsp;<a href="https://www.kaggle.com/learn/certification/yanndivet/intermediate-machine-learning"><img src="images/logo certificate.png" alt="logo certif" width="15" height="15"></a></li>
-                <li>Feature Engineering&nbsp;<a href="https://www.kaggle.com/learn/feature-engineering"><img src="images/kaggle logo.png" alt="logo kaggle" width="17" height="17"></a>&nbsp;<a href="https://www.kaggle.com/learn/certification/yanndivet/feature-engineering"><img src="images/logo certificate.png" alt="logo certif" width="15" height="15"></a></li>
-                <li>Intro to SQL&nbsp;<a href="https://www.kaggle.com/learn/intro-to-sql"><img src="images/kaggle logo.png" alt="logo kaggle" width="17" height="17"></a>&nbsp;<a href="https://www.kaggle.com/learn/certification/yanndivet/intro-to-sql"><img src="images/logo certificate.png" alt="logo certif" width="15" height="15"></a></li>
-            </ul>
-    
-    <h2>Contact</h2>
-        <ul>
-            <li>Postal address: Homerton College, Hills Road, Cambridge CB2 8PH, UK</li>
-            <li>Email: yad22 [at] cam [dot] ac [dot] uk </li>
-        </ul>
+        function toggleSubsection(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            
+            content.classList.toggle('active');
+            
+            // Rotate icon
+            if (content.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
 
+        // Initialize with first section open
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section-header');
+            if (firstSection) {
+                firstSection.click();
+            }
+        });
+    </script>
 </body>
 </html>
