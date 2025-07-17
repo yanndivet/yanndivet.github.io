@@ -198,11 +198,21 @@
             font-weight: bold;
         }
 
-        /* Projects Grid */
+        /* Projects Grid (now collapsible) */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+            margin-top: 20px;
+
+            /* collapse/expand rules */
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+        }
+        .projects-grid.active {
+            /* allow enough room for your content; adjust as needed */
+            max-height: 1000px;
             margin-top: 20px;
         }
 
