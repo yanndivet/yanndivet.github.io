@@ -448,3 +448,20 @@
         outline: none !important;       /* also nixes any focus outline */
         caret-color: transparent !important;
         }
+
+        /* ───────────────────────────────────────────────────────────────
+        Disable text‐selection and hide the insertion caret globally
+        ────────────────────────────────────────────────────────────── */
+        html, body, *, *::before, *::after {
+        /* turn off any text selection */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        /* hide the blinking insertion caret */
+        caret-color: transparent !important;
+
+        /* nix any focus outlines too (optional) */
+        outline: none !important;
+        }
