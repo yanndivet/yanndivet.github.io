@@ -204,13 +204,15 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-top: 20px;
-
-            /* collapse/expand rules */
+        }
+        
+        /* Only apply collapse/expand rules to projects-grid in year sections, not subsections */
+        .year-section .projects-grid {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease, margin-top 0.3s ease;
         }
-        .projects-grid.active {
+        .year-section .projects-grid.active {
             /* allow enough room for your content; adjust as needed */
             max-height: 1000px;
             margin-top: 20px;
@@ -387,7 +389,7 @@
         }
 
         .subsection-content.active {
-            max-height: 1000px;
+            max-height: 2000px;
         }
 
         /* Responsive Design */
